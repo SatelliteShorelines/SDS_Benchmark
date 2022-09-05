@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "DUCK_polygon",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "Name": "Polygon 1", "description": null, "timestamp": null, "begin": null, "end": null, "altitudeMode": null, "tessellate": -1, "extrude": 0, "visibility": -1, "drawOrder": null, "icon": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ -75.7566167, 36.1891253, 0.0 ], [ -75.7522823, 36.1747502, 0.0 ], [ -75.7437636, 36.1763438, 0.0 ], [ -75.7479908, 36.1905107, 0.0 ], [ -75.7566167, 36.1891253, 0.0 ] ] ] } }
+]
+}

@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "TRUCVERT_polygon",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "Name": "Polygon 1", "description": null, "timestamp": null, "begin": null, "end": null, "altitudeMode": null, "tessellate": -1, "extrude": 0, "visibility": -1, "drawOrder": null, "icon": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ -1.2557972, 44.7622052, 0.0 ], [ -1.2580288, 44.7240424, 0.0 ], [ -1.2372578, 44.7236765, 0.0 ], [ -1.2338245, 44.7620833, 0.0 ], [ -1.2557972, 44.7622052, 0.0 ] ] ] } }
+]
+}

@@ -1,11 +1,12 @@
 {
 "type": "FeatureCollection",
-"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::28356" } },
+"name": "NARRABEEN_transects",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
-{ "type": "Feature", "properties": { "name": "PF1" }, "geometry": { "type": "LineString", "coordinates": [ [ 342880, 6269180 ], [ 343144, 6269037 ] ] } },
-{ "type": "Feature", "properties": { "name": "PF2" }, "geometry": { "type": "LineString", "coordinates": [ [ 342733, 6268783 ], [ 343008, 6268664 ] ] } },
-{ "type": "Feature", "properties": { "name": "PF4" }, "geometry": { "type": "LineString", "coordinates": [ [ 342451, 6267913 ], [ 342746, 6267859 ] ] } },
-{ "type": "Feature", "properties": { "name": "PF6" }, "geometry": { "type": "LineString", "coordinates": [ [ 342460, 6267042 ], [ 342759, 6267075 ] ] } },
-{ "type": "Feature", "properties": { "name": "PF8" }, "geometry": { "type": "LineString", "coordinates": [ [ 342675, 6266241 ], [ 342936, 6266388 ] ] } }
+{ "type": "Feature", "properties": { "name": "PF1" }, "geometry": { "type": "LineString", "coordinates": [ [ 151.304526549406205, -33.705739380969902 ], [ 151.307348975930978, -33.707067645716187 ] ] } },
+{ "type": "Feature", "properties": { "name": "PF2" }, "geometry": { "type": "LineString", "coordinates": [ [ 151.302870474036837, -33.709296707848168 ], [ 151.305815899126742, -33.710410271184394 ] ] } },
+{ "type": "Feature", "properties": { "name": "PF4" }, "geometry": { "type": "LineString", "coordinates": [ [ 151.299673844096134, -33.717098225737459 ], [ 151.30284678765571, -33.717628838134033 ] ] } },
+{ "type": "Feature", "properties": { "name": "PF6" }, "geometry": { "type": "LineString", "coordinates": [ [ 151.299616081020616, -33.724951928364312 ], [ 151.302847909921724, -33.72469880800292 ] ] } },
+{ "type": "Feature", "properties": { "name": "PF8" }, "geometry": { "type": "LineString", "coordinates": [ [ 151.301793488660991, -33.732205144254998 ], [ 151.304635780505208, -33.730918594962262 ] ] } }
 ]
 }
