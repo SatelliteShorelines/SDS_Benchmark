@@ -3,6 +3,6 @@
 "name": "TORREYPINES_polygon",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
-{ "type": "Feature", "properties": { "Name": "Polygon 1", "description": null, "timestamp": null, "begin": null, "end": null, "altitudeMode": null, "tessellate": -1, "extrude": 0, "visibility": -1, "drawOrder": null, "icon": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ -117.2770738, 32.942528, 0.0 ], [ -117.2669458, 32.8709007, 0.0 ], [ -117.2430849, 32.8697473, 0.0 ], [ -117.2475481, 32.9429602, 0.0 ], [ -117.2770738, 32.942528, 0.0 ] ] ] } }
+{ "type": "Feature", "properties": { "Name": "Polygon 1", "description": null, "timestamp": null, "begin": null, "end": null, "altitudeMode": null, "tessellate": -1, "extrude": 0, "visibility": -1, "drawOrder": null, "icon": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ -117.276854155369321, 32.943585976116182, 0.0 ], [ -117.276216633074981, 32.87092817079742, 0.0 ], [ -117.2430849, 32.8697473, 0.0 ], [ -117.243384234917329, 32.943385346088036, 0.0 ], [ -117.276854155369321, 32.943585976116182, 0.0 ] ] ] } }
 ]
 }

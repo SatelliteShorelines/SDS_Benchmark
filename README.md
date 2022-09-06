@@ -12,7 +12,7 @@ The idea is that participants run their shoreline mapping algorithm at each of t
 
 [This notebook](https://github.com/kvos/SDS_Benchmark/blob/main/1_preprocess_datasets.ipynb) provides the code to download and process the publicly available shoreline datasets into time-series of shoreline change.
 
-The inputs needed to run satellite-derived methods are also provided for each site:
+The inputs needed to run satellite-derived methods are also provided for each site (can be visualised by opening the QGIS file `qgis_overview.qgz`):
 - **Region of Interest (ROI)**: to download/crop the satellite imagery
 - **Cross-shore transects**: to extract time-series of cross-shore shoreline change and apply a water level correct
 - **Modelled tides**: time-series of tide levels every 5 min from the FES2014 global tide model
