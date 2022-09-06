@@ -20,31 +20,30 @@ The inputs needed to run satellite-derived methods are also provided for each si
 - (**Wave parameters**): not available at the moment but can be obtained if needed
 
 ## 1. Narrabeen, Australia, WRL dataset
-![image](https://user-images.githubusercontent.com/7217258/188481021-470a338c-739d-4fc8-8d9e-02bfa94cd38c.png)
+![image.png](./doc/site_narrabeen.PNG)
 
-![image](https://user-images.githubusercontent.com/7217258/188481407-341562b4-6f31-483f-ae2a-f2500769029e.png)
+![image](https://user-images.githubusercontent.com/7217258/188481021-470a338c-739d-4fc8-8d9e-02bfa94cd38c.png)
 
 ![image](https://user-images.githubusercontent.com/7217258/188481493-47746dbb-a4ca-4901-8932-db011a1c396d.png)
 
 ## 2. Duck, North Carolina, FRF dataset
+![image.png](./doc/site_duck.PNG)
 
 ![image](https://user-images.githubusercontent.com/7217258/188481583-a711f23e-7d06-442a-a781-0346b5dde219.png)
-
-![image](https://user-images.githubusercontent.com/7217258/188481706-2135eb81-55f5-4a51-83fd-8716222e93fa.png)
 
 ![image](https://user-images.githubusercontent.com/7217258/188481797-1429ee75-0d4c-4969-ace7-b34c1a10d4d0.png)
 
 ## 3. Truc Vert, France, METHYS dataset
-![image](https://user-images.githubusercontent.com/7217258/188474332-c9104f70-398b-419e-93d6-a744c2cabb2c.png)
+![image.png](./doc/site_trucvert.PNG)
 
-![image](https://user-images.githubusercontent.com/7217258/188473839-3a186785-79e8-4734-9d74-6dff1c7a4a71.png)
+![image](https://user-images.githubusercontent.com/7217258/188474332-c9104f70-398b-419e-93d6-a744c2cabb2c.png)
 
 ![image](https://user-images.githubusercontent.com/7217258/188474017-4131da6e-5c1a-4cca-83a1-336e6b5d57de.png)
 
 ## 4. Torrey Pines, California, Scripps dataset
-![image](https://user-images.githubusercontent.com/7217258/188481954-69a07b07-714b-4ed8-b9ea-c5991ff0d058.png)
+![image.png](./doc/site_torreypines.PNG)
 
-![image](https://user-images.githubusercontent.com/7217258/188482069-1a2f1389-ec55-4c1a-a0c2-44e217fdc75b.png)
+![image](https://user-images.githubusercontent.com/7217258/188481954-69a07b07-714b-4ed8-b9ea-c5991ff0d058.png)
 
 ![image](https://user-images.githubusercontent.com/7217258/188482153-8c921827-ffb1-461f-8c4b-b9d38592f1fc.png)
 
