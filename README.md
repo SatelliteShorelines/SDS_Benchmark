@@ -1,6 +1,8 @@
 # SDS_Benchmark
 
-This repository is a testbench for shoreline mapping algorithms using satellite imagery.
+This repository is a testbench for shoreline mapping algorithms using publicly available satellite imagery. The idea is that it can be used to:
+- evaluate established satellite-derived shoreline (SDS) algorithms against a set of benchmark datasets.
+- test future developments and enhancements of SDS methods, like co-registration or wave runup correction, with a fixed and publicly available methodology.
 
 Currently there are 4 validation sites available, which are downloaded from their respective sources and processed into time-series of shoreline change along cross-shore transects:
 - Narrabeen, Australia [ref](https://www.nature.com/articles/sdata201624)
@@ -10,7 +12,7 @@ Currently there are 4 validation sites available, which are downloaded from thei
 
 The idea is that participants run their shoreline mapping algorithm at each of the sites and then we evaluate the accuracy of the satellite-derived shorelines using the in situ surveys.
 
-[This notebook](https://github.com/kvos/SDS_Benchmark/blob/main/1_preprocess_datasets.ipynb) provides the code to download and process the publicly available shoreline datasets into time-series of shoreline change.
+The first notebook, [1_preprocess_datasets.ipynb](https://github.com/kvos/SDS_Benchmark/blob/main/1_preprocess_datasets.ipynb), provides the code to download and process the publicly available shoreline datasets into time-series of shoreline change along cross-shore transects.
 
 The inputs needed to run satellite-derived methods are also provided for each site (can be visualised by opening the QGIS file `qgis_overview.qgz`):
 - **Region of Interest (ROI)**: to download/crop the satellite imagery
