@@ -5,10 +5,10 @@ This repository is a testbench for shoreline mapping algorithms using publicly a
 - test future developments and enhancements of SDS methods, like co-registration or wave runup correction, with a fixed and publicly available methodology.
 
 Currently there are 4 validation sites available, which are downloaded from their respective sources and processed into time-series of shoreline change along cross-shore transects:
-- Narrabeen, Australia [ref](https://www.nature.com/articles/sdata201624)
-- Duck, North Carolina, USA [ref](https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1002/2014JC010329)
-- Truc Vert, France [ref](https://www.nature.com/articles/s41597-020-00750-5#Tab2)
-- Torrey Pines, California, USA [ref](https://www.nature.com/articles/s41597-019-0167-6)
+1. Narrabeen, Australia [ref](https://www.nature.com/articles/sdata201624)
+2. Duck, North Carolina, USA [ref](https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1002/2014JC010329)
+3. Truc Vert, France [ref](https://www.nature.com/articles/s41597-020-00750-5#Tab2)
+4. Torrey Pines, California, USA [ref](https://www.nature.com/articles/s41597-019-0167-6)
 
 The idea is that participants run their shoreline mapping algorithm at each of the sites and then we evaluate the accuracy of the satellite-derived shorelines using the in situ surveys.
 
