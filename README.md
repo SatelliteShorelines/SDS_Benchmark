@@ -1,8 +1,25 @@
 # SDS_Benchmark
 
-This repository is a testbench for shoreline mapping algorithms using publicly available satellite imagery. The idea is that it can be used to:
-- evaluate established satellite-derived shoreline (SDS) algorithms against a set of benchmark datasets.
-- test future developments and enhancements of SDS methods, like co-registration or wave runup correction, with a fixed and publicly available methodology.
+This repository is a testbed for shoreline mapping algorithms using satellite imagery. It contains all benchmark datasets, input files, and codes to evaluate shoreline mapping algorithms.
+
+## Background and Objectives
+
+Different algorithms can be used to map the position of the shoreline on satellite imagery like Landsat and Sentinel-2, and extract long-term time-series of coastal change. Satellite-derived shoreline workflows differ on many aspects including:
+1. the way images are  pre-processed (pan-sharpening, compositing, co-registration)
+2. the spectral indices used for detecting the water edge (NDWI, MNDWI, AWEI)
+3. the contouring method (at-pixel scale, sub-pixel, hard/soft classification)
+4.  the water level correction that is applied to the shorelines (tide, beach slope, wave setup)
+
+
+With this project, we want to showcase the diversity of algorithms that can be applied to the satellite imagery and create a platform that can be used to:  
+- evaluate the accuracy of established satellite-derived shoreline (SDS) algorithms against benchmark datasets with a set methodology.
+- test new algorithms, future developments and enhancements of existing SDS workflows.
+
+## Input data
+
+Participants can run their shoreline mapping algorithm at each of the sites using the input files provided.
+
+Everybody is welcome to submit new benchmark datasets, or complement the existing ones, as long as the data they upload is publicly available.
 
 Currently there are 4 validation sites available, which are downloaded from their respective sources and processed into time-series of shoreline change along cross-shore transects:
 1. Narrabeen, Australia [ref](https://www.nature.com/articles/sdata201624)
@@ -10,45 +27,100 @@ Currently there are 4 validation sites available, which are downloaded from thei
 3. Truc Vert, France [ref](https://www.nature.com/articles/s41597-020-00750-5#Tab2)
 4. Torrey Pines, California, USA [ref](https://www.nature.com/articles/s41597-019-0167-6)
 
-The idea is that participants run their shoreline mapping algorithm at each of the sites and then we evaluate the accuracy of the satellite-derived shorelines using the in situ surveys.
+The first Jupyter notebook, [1_preprocess_datasets.ipynb](https://github.com/kvos/SDS_Benchmark/blob/main/1_preprocess_datasets.ipynb), provides the code to download and process the publicly available shoreline datasets into time-series of shoreline change along cross-shore transects.
 
-The first notebook, [1_preprocess_datasets.ipynb](https://github.com/kvos/SDS_Benchmark/blob/main/1_preprocess_datasets.ipynb), provides the code to download and process the publicly available shoreline datasets into time-series of shoreline change along cross-shore transects.
+The following inputs are provided for each site:
+- `Region of Interest (ROI)`: to download/crop the satellite imagery
+- `Cross-shore transects`: to extract time-series of cross-shore shoreline change and apply a water level correct
+- `Modelled tides`: time-series of tide levels every 5 min from the FES2014 global tide model
+- `Beach slopes`: estimated from the topographic surveys, can be used to apply a water level correction
+- (`Wave parameters`): not available at the moment but can be obtained if needed
 
-The inputs needed to run satellite-derived methods are also provided for each site (can be visualised by opening the QGIS file `qgis_overview.qgz`):
-- **Region of Interest (ROI)**: to download/crop the satellite imagery
-- **Cross-shore transects**: to extract time-series of cross-shore shoreline change and apply a water level correct
-- **Modelled tides**: time-series of tide levels every 5 min from the FES2014 global tide model
-- **Beach slopes**: estimated from the topographic surveys, to apply a water level correction
-- (**Wave parameters**): not available at the moment but can be obtained if needed
+The geospatial layers can be visualised by opening the QGIS file `qgis_overview.qgz` include in the repository.
 
-## 1. Narrabeen, Australia, WRL dataset
-![image.png](./doc/site_narrabeen.PNG)
+Please use these inputs to ensure that differences between algorithms are not a result of differences in the inputs.
+
+## Outputs and Deliverables
+
+The time-series of shoreline change should be submitted for each transect in a consistent format to make the evaluation easier.
+
+**One .csv file per transect with the dates (in UTC time) in the first column and cross-shore distance (in metres) from the origin of the transect in the second column.**
+
+An example is provide in XX.
+
+
+#### How to submit
+
+To submit your results, please:
+
+1. [fork](https://github.com/SatelliteShorelines/SDS_Benchmark/fork) this repository;
+2. Copy the `submission_example` folder and rename (e.g., 'team_CoastSat');
+3. Change the files in the folder;
+4. Create a [Pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) to the original repository to submit your results.
+
+If you need any help with this submission, please post in the [GitHub Issues](https://github.com/SatelliteShorelines/SDS_Benchmark/issues) page.
+
+**Note 1**: Please do not change the names of the files contained in the example folder, only change the data within
+the files.
+
+#### Deadline
+
+The deadline for this first round of analysis is **31/11/2022**.
+
+## Benchmark datasets
+
+#### Site 1: Narrabeen, Australia, WRL dataset
+
+<p align="center">
+
+<img src="./doc/site_narrabeen.PNG" alt="drawing" width="300"/>
 
 ![image](https://user-images.githubusercontent.com/7217258/188481021-470a338c-739d-4fc8-8d9e-02bfa94cd38c.png)
 
 ![image](https://user-images.githubusercontent.com/7217258/188481493-47746dbb-a4ca-4901-8932-db011a1c396d.png)
 
-## 2. Duck, North Carolina, FRF dataset
-![image.png](./doc/site_duck.PNG)
+</p>
+
+
+#### Site 2: Duck, North Carolina, FRF dataset
+<p align="center">
+
+<img src="./doc/site_duck.PNG" alt="drawing" width="300"/>
 
 ![image](https://user-images.githubusercontent.com/7217258/188481583-a711f23e-7d06-442a-a781-0346b5dde219.png)
 
 ![image](https://user-images.githubusercontent.com/7217258/188481797-1429ee75-0d4c-4969-ace7-b34c1a10d4d0.png)
 
-## 3. Truc Vert, France, METHYS dataset
-![image.png](./doc/site_trucvert.PNG)
+</p>
+
+#### Site 3: Truc Vert, France, METHYS dataset
+
+<p align="center">
+
+<img src="./doc/site_trucvert.PNG" alt="drawing" width="300"/>
 
 ![image](https://user-images.githubusercontent.com/7217258/188474332-c9104f70-398b-419e-93d6-a744c2cabb2c.png)
 
 ![image](https://user-images.githubusercontent.com/7217258/188474017-4131da6e-5c1a-4cca-83a1-336e6b5d57de.png)
 
-## 4. Torrey Pines, California, Scripps dataset
-![image.png](./doc/site_torreypines.PNG)
+</p>
+
+#### Site 4: Torrey Pines, California, Scripps dataset
+
+<p align="center">
+
+<img src="./doc/site_torreypines.PNG" alt="drawing" width="300"/>
 
 ![image](https://user-images.githubusercontent.com/7217258/188481954-69a07b07-714b-4ed8-b9ea-c5991ff0d058.png)
 
 ![image](https://user-images.githubusercontent.com/7217258/188482153-8c921827-ffb1-461f-8c4b-b9d38592f1fc.png)
 
+</p>
 
-Work in progress:
-- a notebook to evaluate the accuracy of the satellite-derived shorelines at each site
+## Questions and Comments
+
+Please put any questions on the [GitHub Issues](https://github.com/SatelliteShorelines/SDS_Benchmark/issues) page so that everybody can read/comment.
+
+## Acknowledgements
+
+We acknowledge the creators of this repository which was used as a template: https://github.com/gwmodeling/challenge
