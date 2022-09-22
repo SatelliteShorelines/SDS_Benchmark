@@ -85,7 +85,7 @@ The deadline for this first round of analysis is **31/11/2022**.
 ### Site 2: Duck, North Carolina, FRF dataset
 <p align="center">
 
-<img src="./doc/site_duck.PNG" alt="drawing" width="400"/>
+<img src="./doc/site_duck.PNG" alt="drawing" width="800"/>
 
 ![image](https://user-images.githubusercontent.com/7217258/188481583-a711f23e-7d06-442a-a781-0346b5dde219.png)
 
@@ -97,7 +97,7 @@ The deadline for this first round of analysis is **31/11/2022**.
 
 <p align="center">
 
-<img src="./doc/site_trucvert.PNG" alt="drawing" width="400"/>
+<img src="./doc/site_trucvert.PNG" alt="drawing" width="600"/>
 
 ![image](https://user-images.githubusercontent.com/7217258/188474332-c9104f70-398b-419e-93d6-a744c2cabb2c.png)
 
@@ -109,7 +109,7 @@ The deadline for this first round of analysis is **31/11/2022**.
 
 <p align="center">
 
-<img src="./doc/site_torreypines.PNG" alt="drawing" width="400"/>
+<img src="./doc/site_torreypines.PNG" alt="drawing" width="600"/>
 
 ![image](https://user-images.githubusercontent.com/7217258/188481954-69a07b07-714b-4ed8-b9ea-c5991ff0d058.png)
 
