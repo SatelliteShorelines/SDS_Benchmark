@@ -1,5 +1,7 @@
 # SDS_Benchmark
 
+[![Join the chat at https://gitter.im/CoastSat/community](https://badges.gitter.im/spyder-ide/spyder.svg)](https://gitter.im/SatelliteShorelines_chat/community)
+
 This repository is a testbed for shoreline mapping algorithms using satellite imagery. It contains all benchmark datasets, input files, and codes to evaluate shoreline mapping algorithms.
 
 ## Background and Objectives
