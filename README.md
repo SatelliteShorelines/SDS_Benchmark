@@ -67,17 +67,17 @@ To submit your results, please:
 
 If you need any help with this submission, please post in the [GitHub Issues](https://github.com/SatelliteShorelines/SDS_Benchmark/issues) page.
 
-#### Deadline
+### Deadline
 
 The deadline for this first round of analysis is the end of the year (**31/12/2022**).
 
 ## Benchmark datasets
 
-#### Site 1: Narrabeen, Australia, WRL dataset
+### Site 1: Narrabeen, Australia, WRL dataset
 
 <p align="center">
 
-<img src="./doc/site_narrabeen.PNG" alt="drawing" width="300"/>
+<img src="./doc/site_narrabeen.PNG" alt="drawing" width="400"/>
 
 ![image](https://user-images.githubusercontent.com/7217258/188481021-470a338c-739d-4fc8-8d9e-02bfa94cd38c.png)
 
@@ -86,10 +86,10 @@ The deadline for this first round of analysis is the end of the year (**31/12/20
 </p>
 
 
-#### Site 2: Duck, North Carolina, FRF dataset
+### Site 2: Duck, North Carolina, FRF dataset
 <p align="center">
 
-<img src="./doc/site_duck.PNG" alt="drawing" width="300"/>
+<img src="./doc/site_duck.PNG" alt="drawing" width="800"/>
 
 ![image](https://user-images.githubusercontent.com/7217258/188481583-a711f23e-7d06-442a-a781-0346b5dde219.png)
 
@@ -97,11 +97,11 @@ The deadline for this first round of analysis is the end of the year (**31/12/20
 
 </p>
 
-#### Site 3: Truc Vert, France, METHYS dataset
+### Site 3: Truc Vert, France, METHYS dataset
 
 <p align="center">
 
-<img src="./doc/site_trucvert.PNG" alt="drawing" width="300"/>
+<img src="./doc/site_trucvert.PNG" alt="drawing" width="600"/>
 
 ![image](https://user-images.githubusercontent.com/7217258/188474332-c9104f70-398b-419e-93d6-a744c2cabb2c.png)
 
@@ -109,11 +109,11 @@ The deadline for this first round of analysis is the end of the year (**31/12/20
 
 </p>
 
-#### Site 4: Torrey Pines, California, Scripps dataset
+### Site 4: Torrey Pines, California, Scripps dataset
 
 <p align="center">
 
-<img src="./doc/site_torreypines.PNG" alt="drawing" width="300"/>
+<img src="./doc/site_torreypines.PNG" alt="drawing" width="600"/>
 
 ![image](https://user-images.githubusercontent.com/7217258/188481954-69a07b07-714b-4ed8-b9ea-c5991ff0d058.png)
 
