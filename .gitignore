@@ -5,6 +5,7 @@
 *.mp4
 *.txt
 *checkpoint.ipynb
+*-checkpoint.py
 *.xml
 *.jpg
 *.pkl

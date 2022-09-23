@@ -1,42 +1,32 @@
-# Example submission
+# Shoreline results
 
-Here the submission format is described.
+This folder contains the shoreline change time-series from the different participating teams.
 
-## Author(s)
+## Format of the outputs
 
-- Author 1 (Affiliation(s))
-- Author 2 (Affiliation(s))
+An example of submission is provided in the `example_submission` folder. There is one folder per site and in that folder the shoreline time-series are separated in two subfolders:
+- `raw_timeseries`: contains the raw time-series of shoreline change along the transects, as extracted from the images (no water level correction).
+- `tidally_timeseries`: contains the tidally-corrected shoreline change time-series along the transects (can also include a wave correction).
 
-## Mapped locations
+**The format of the time-series is one .csv file per transect**, named with the following convention `PROFILENAME_timeseries_raw.csv` and `PROFILENAME_timeseries_tidally_corrected.csv` where:
+- the first column contains the date in UTC time
+- the second column contains the cross-shore distance of the shoreline from the origin of the transect
+- the third column is optional and contains the name of the satellite mission from which the datapoint was extracted
 
-We produced shoreline time-series for the following locations (check locations):
+![image](https://user-images.githubusercontent.com/7217258/191886739-9a5403a9-d599-4e63-8281-a9a9e7723f58.png)
 
-- [x] NARRABEEN
-- [ ] DUCK
-- [ ] TRUCVERT
-- [ ] TORREYPINES
+An example of csv file is provided for Narrabeen under `/submissions/example_submission/NARRABEEN`.
 
-## Algorithm/workflow description
+## How to submit
 
-We used the algorithm XX as described in detail in XX et al. (2020). Describe the algorithm in 1-2 lines.
-The model is implemented in the XX software package that was used here.
+To submit your results, please:
 
-## Workflow to reproduce
+1. [fork](https://github.com/SatelliteShorelines/SDS_Benchmark/fork) this repository;
+2. Copy the `example_submission` folder and rename (e.g., 'team_CoastSat');
+3. Change the files in the folder and fill the README.md file;
+4. Create a [Pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) to the original repository to submit your results.
 
-Please provide a detailed description of the workflow here, in such a way that the results may be reproduced independently by others.
-The preferred way to ensure reproducibility is to provide a commented script and environment settings in the `algorithms` folder.
+If you need any help with this submission, please post in the [GitHub Issues](https://github.com/SatelliteShorelines/SDS_Benchmark/issues) page.
 
-## Estimation of effort
-
-Please provide an (rough) estimate of the time it took to run the workflow (e.g., download, read in data, process). If possible, please also state the computational resources that were required.
-
-| Location    | Download time (hrs) | Mapping time (hrs) | Total time (hrs) |
-|-------------|------------------------|----------------------|------------------|
-| NARRABEEN | ~ 2                    | 40                   | 02:00:40         |
-| DUCK     |                        |                      |                  |
-| TRUCVERT    |                        |                      |                  |
-| TORREYPINES    |                        |                      |                  |
-
-## Additional information
-
-If you want to provide any additional information about your submission/results, please do so here.
+**Note 1**: Please do not change the names of the files contained in the example folder, only change the data within
+the files.

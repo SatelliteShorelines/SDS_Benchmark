@@ -10,7 +10,6 @@ Different algorithms can be used to map the position of the shoreline on satelli
 3. the contouring method (at-pixel scale, sub-pixel, hard/soft classification)
 4.  the water level correction that is applied to the shorelines (tide, beach slope, wave setup)
 
-
 With this project, we want to showcase the diversity of algorithms that can be applied to the satellite imagery and create a platform that can be used to:  
 - evaluate the accuracy of established satellite-derived shoreline (SDS) algorithms against benchmark datasets with a set methodology.
 - test new algorithms, future developments and enhancements of existing SDS workflows.
@@ -27,7 +26,7 @@ Currently there are 4 validation sites available, which are downloaded from thei
 3. Truc Vert, France [ref](https://www.nature.com/articles/s41597-020-00750-5#Tab2)
 4. Torrey Pines, California, USA [ref](https://www.nature.com/articles/s41597-019-0167-6)
 
-The first Jupyter notebook, [1_preprocess_datasets.ipynb](https://github.com/kvos/SDS_Benchmark/blob/main/1_preprocess_datasets.ipynb), provides the code to download and process the publicly available shoreline datasets into time-series of shoreline change along cross-shore transects.
+The first Jupyter notebook, [1_preprocess_datasets.ipynb](https://github.com/kvos/SDS_Benchmark/blob/main/1_preprocess_datasets.ipynb), provides the code to download and process the publicly available shoreline datasets into time-series of shoreline change along cross-shore transects. Everyone is encouraged to run this notebook to get familiar with the benchmark sites.
 
 The following inputs are provided for each site:
 - `Region of Interest (ROI)`: to download/crop the satellite imagery
@@ -44,10 +43,18 @@ Please use these inputs to ensure that differences between algorithms are not a 
 
 The time-series of shoreline change should be submitted for each transect in a consistent format to make the evaluation easier.
 
-**One .csv file per transect with the dates (in UTC time) in the first column and cross-shore distance (in metres) from the origin of the transect in the second column.**
+The `submission` folder will contain the shoreline change time-series from the different participating teams. An example of submission is provided in the `example_submission` folder. There is one folder per site and in that folder the shoreline time-series are separated in two subfolders:
+- `raw_timeseries`: contains the raw time-series of shoreline change along the transects, as extracted from the images (no water level correction).
+- `tidally_timeseries`: contains the tidally-corrected shoreline change time-series along the transects (can also include a wave correction).
 
-An example is provide in XX.
+**The format of the time-series is one .csv file per transect**, named with the following convention `PROFILENAME_timeseries_raw.csv` and `PROFILENAME_timeseries_tidally_corrected.csv` where:
+- the first column contains the date in UTC time
+- the second column contains the cross-shore distance of the shoreline from the origin of the transect
+- the third column is optional and contains the name of the satellite mission from which the datapoint was extracted
 
+![image](https://user-images.githubusercontent.com/7217258/191886739-9a5403a9-d599-4e63-8281-a9a9e7723f58.png)
+
+An example of csv file is provided for Narrabeen under `/submissions/example_submission/NARRABEEN`.
 
 #### How to submit
 
@@ -60,12 +67,9 @@ To submit your results, please:
 
 If you need any help with this submission, please post in the [GitHub Issues](https://github.com/SatelliteShorelines/SDS_Benchmark/issues) page.
 
-**Note 1**: Please do not change the names of the files contained in the example folder, only change the data within
-the files.
-
 #### Deadline
 
-The deadline for this first round of analysis is **31/11/2022**.
+The deadline for this first round of analysis is the end of the year (**31/12/2022**).
 
 ## Benchmark datasets
 
