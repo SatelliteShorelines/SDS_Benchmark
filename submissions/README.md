@@ -27,6 +27,3 @@ To submit your results, please:
 4. Create a [Pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) to the original repository to submit your results.
 
 If you need any help with this submission, please post in the [GitHub Issues](https://github.com/SatelliteShorelines/SDS_Benchmark/issues) page.
-
-**Note 1**: Please do not change the names of the files contained in the example folder, only change the data within
-the files.
