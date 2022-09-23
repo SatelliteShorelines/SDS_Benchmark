@@ -71,7 +71,7 @@ If you need any help with this submission, please post in the [GitHub Issues](ht
 
 ### Deadline
 
-The deadline for this first round of analysis is the end of the year (**31/12/2022**).
+The deadline for this first round of analysis is the end of the year (**01/12/2022**).
 
 ## Benchmark datasets
 
