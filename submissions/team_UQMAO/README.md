@@ -21,7 +21,7 @@ We used the algorithm HT-SDS as described in detail in Mao et al. (2021). The al
 The model is implemented with the GEE python API that was used here.
 
 ## Workflow to reproduce
-The change to the algorithm 
+Change to the algorithm directory
 ```bash
 cd ../../algorithms/UQMAO
 ```
