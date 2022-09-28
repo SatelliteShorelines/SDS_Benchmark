@@ -21,6 +21,10 @@ We used the algorithm HT-SDS as described in detail in Mao et al. (2021). The al
 The model is implemented with the GEE python API that was used here.
 
 ## Workflow to reproduce
+The change to the algorithm 
+```bash
+cd ../../algorithms/UQMAO
+```
 The algorithm can be implemented for a site by simply launching
 ```bash
 python SDSRetrieve.py --SITE SITENAME
@@ -44,8 +48,9 @@ Since the entire workflow is based on GEE, it has no requirement for client-side
 
 ## Additional information
 
-This algorithm is efficiency-focused to achieven global-implementation and sacrificed accuracy in several aspects including but not limited to: (1) Use annual composites; (2) Limit the number of images processed in a year to 100; (3) Not retrieving raw images and shoreline vector.
-
-Since all Landsat images were composited, this algorithm does not distinguish the satname for each shoreline position record.
-
-The tidal-correction in this algorithm was achieved through image-compositing, so the water level information was not used. But it may be necessary to use this information to transform the high-tide position from this algorithm to mean sea level in order to directly compare with other algorithms
+When comparing this algorithm to others:
+1.This algorithm is optimized for efficiency instead of accuracy to achieve global implementation so the entire workflow was based on GEE. Nothing except the final shoreline positions was downloaded;
+2.The algorithm retrieved annual shoreline position instead of instantaneous ones, so had much smaller temporal frequency;
+3.The algorithm retrieved shoreline at high tide instead of mean sea level with image compositing instead of tidal correction with water level data. But it may be necessary to use water level data to transform the high-tide position from this algorithm to mean sea level in order to directly compare with other algorithms
+, especially for TORREYPINES and TRUCVERT site.
+4.Since all Landsat images were composited, this algorithm does not distinguish the “satname” as an individual column in output files.

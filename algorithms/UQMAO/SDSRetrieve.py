@@ -27,7 +27,7 @@ def getCmdargs():
                    help="End year of the analysis")
     p.add_argument("--INDIR", default="../../datasets",
                    help="Directory for input files")
-    p.add_argument("--OUTDIR", default="",
+    p.add_argument("--OUTDIR", default="../../submissions/team_UQMAO",
                    help="Directory for output files")
     p.add_argument("--IMGLIMIT", type=int, default=100,
                    help="Limit for the number of images used in a year")
