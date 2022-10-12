@@ -11,7 +11,7 @@
     },
     "TRUCVERT": {
         "beach_slope": 0.05,
-        "contour_level": 1,
+        "contour_level": 1.5,
         "epsg": 32630
     },
     "TORREYPINES": {

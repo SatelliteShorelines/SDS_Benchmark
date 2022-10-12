@@ -15,6 +15,7 @@ import pdb
 import skimage.filters as filters
 import skimage.measure as measure
 import skimage.morphology as morphology
+import skimage.transform as transform
 
 # machine learning modules
 import sklearn
@@ -32,7 +33,7 @@ from matplotlib import gridspec
 import pickle
 from datetime import datetime
 from pylab import ginput
-
+import shutil
 # CoastSat modules
 from coastsat import SDS_tools, SDS_preprocess
 
@@ -114,6 +115,7 @@ def extract_shorelines(metadata, settings):
         output_geoaccuracy = []# georeferencing accuracy of the images
         output_idxkeep = []    # index that were kept during the analysis (cloudy images are skipped)
         output_t_mndwi = []    # MNDWI threshold used to map the shoreline
+        output_classif = []    # classified image
 
         # load classifiers (if sklearn version above 0.20, learn the new files)
         str_new = ''
@@ -199,6 +201,9 @@ def extract_shorelines(metadata, settings):
                     else:
                         # use classification to refine threshold and extract the sand/water interface
                         contours_mwi, t_mndwi = find_wl_contours2(im_ms, im_labels, cloud_mask, im_ref_buffer)
+                    # if threhsold is returned at -999, skip the image
+                    if t_mndwi == -999:
+                        continue
                 except:
                     print('Could not map shoreline for this image: ' + filenames[i])
                     continue
@@ -228,6 +233,7 @@ def extract_shorelines(metadata, settings):
             output_geoaccuracy.append(metadata[satname]['acc_georef'][i])
             output_idxkeep.append(i)
             output_t_mndwi.append(t_mndwi)
+            output_classif.append(im_classif)
 
         # create dictionnary of output
         output[satname] = {
@@ -238,6 +244,7 @@ def extract_shorelines(metadata, settings):
                 'geoaccuracy': output_geoaccuracy,
                 'idx': output_idxkeep,
                 'MNDWI_threshold': output_t_mndwi,
+                'im_classif': output_classif
                 }
         print('')
 
@@ -428,6 +435,9 @@ def find_wl_contours1(im_ndwi, cloud_mask, im_ref_buffer):
     vec = vec_ndwi[np.logical_and(vec_buffer,~vec_mask)]
     # apply otsu's threshold
     vec = vec[~np.isnan(vec)]
+    # if vec has less than 10 pixels or 5 different colors
+    if len(vec) < 10 or len(np.unique(vec)) < 5:
+        return [],-999
     t_otsu = filters.threshold_otsu(vec)
     # use Marching Squares algorithm to detect contours on ndwi image
     im_ndwi_buffer = np.copy(im_ndwi)
@@ -500,18 +510,22 @@ def find_wl_contours2(im_ms, im_labels, cloud_mask, im_ref_buffer):
 
     # threshold the sand/water intensities
     int_all = np.append(int_water,int_sand, axis=0)
+    # if the vector of pixels has less than 10 pixels or less than 5 colors
+    if len(int_all[:,0]) < 10 or len(np.unique(int_all[:,0])) < 5:
+        return [],-999
+    
+    # find Otsu threshold
     t_mwi = filters.threshold_otsu(int_all[:,0])
-    t_wi = filters.threshold_otsu(int_all[:,1])
-
+    # t_wi = filters.threshold_otsu(int_all[:,1])
     # find contour with Marching-Squares algorithm
-    im_wi_buffer = np.copy(im_wi)
-    im_wi_buffer[~im_ref_buffer] = np.nan
+    # im_wi_buffer = np.copy(im_wi)
+    # im_wi_buffer[~im_ref_buffer] = np.nan
     im_mwi_buffer = np.copy(im_mwi)
     im_mwi_buffer[~im_ref_buffer] = np.nan
-    contours_wi = measure.find_contours(im_wi_buffer, t_wi)
+    # contours_wi = measure.find_contours(im_wi_buffer, t_wi)
     contours_mwi = measure.find_contours(im_mwi_buffer, t_mwi)
     # remove contour points that are NaNs (around clouds)
-    contours_wi = process_contours(contours_wi)
+    # contours_wi = process_contours(contours_wi)
     contours_mwi = process_contours(contours_mwi)
 
     # only return MNDWI contours and threshold
@@ -1170,3 +1184,138 @@ def adjust_detection(im_ms, cloud_mask, im_nodata, im_labels, im_ref_buffer, ima
         ax.clear()
 
     return skip_image, shoreline, t_mndwi
+
+###################################################################################################
+# QA function for bad images
+###################################################################################################
+
+def remove_bad_images(output,settings):
+    "Work in progress, Landsat only for the moment."
+    
+    fp = settings['inputs']['filepath']
+    sitename = settings['inputs']['sitename']
+    
+    # resize all the classified images to a fixed size so that all pixels overlap
+    height = [_.shape[0] for _ in output['im_classif']]
+    width = [_.shape[1] for _ in output['im_classif']]
+    heights = height.copy(); widths = width.copy()
+    if len(np.unique(height)) == 1: height = height[0]
+    else:
+        counts = [sum(height == _) for _ in np.unique(height)]
+        height = np.unique(height)[np.argmax(counts)]    
+    if len(np.unique(width)) == 1: width = width[0]    
+    else:
+        counts = [sum(width == _) for _ in np.unique(width)]
+        width = np.unique(width)[np.argmax(counts)]
+    
+    # ignore images with completely different size
+    idx_skip_height = np.abs(np.array(heights) - height) > settings['prc_image']*height
+    idx_skip_width = np.abs(np.array(widths) - width) > settings['prc_image']*width
+    idx_skip = np.where(np.logical_or(idx_skip_height,idx_skip_width))[0]
+    
+    # format images to same height and width
+    for k in range(len(output['im_classif'])):
+        if k in idx_skip: continue
+        # group land and water classes together (land = 0 , water = 1)
+        output['im_classif'][k][output['im_classif'][k] == 1] = 0
+        output['im_classif'][k][np.logical_or(output['im_classif'][k] == 3,
+                                              output['im_classif'][k] == 2)] = 1
+        # resize
+        output['im_classif'][k] = transform.resize(output['im_classif'][k],
+                                                   (height, width), order=0,
+                                                    preserve_range=True,
+                                                    mode='constant')
+                    
+    # compute average probability of being land or water (can take some time)
+    im_av = np.empty((height,width))
+    for i in range(height):
+        for j in range(width):
+            pixel_values = []
+            for k in range(len(output['im_classif'])):
+                if (output['cloud_cover'][k] > 0.1) or (k in idx_skip):
+                    continue
+                pixel_values.append(output['im_classif'][k][i,j])
+            im_av[i,j] = np.nanmean(pixel_values)
+            
+    # only consider the part of the image with high confidence 
+    # (large probability of belonging to land or water)
+    im_bin = np.logical_or(im_av > 1-settings['prc_pixel'], im_av < settings['prc_pixel'])
+    # do not consider the edges as they can be boundary effects
+    im_bin[:,[0,-1]] = False
+    im_bin[[0,-1],:] = False
+    
+    if settings['save_figure'] == True:
+        # rearranges images in folders
+        source_folder = os.path.join(fp,sitename,'jpg_files','detection')
+        dest_folder1 = os.path.join(fp,sitename,'jpg_files','all_images')
+        dest_folder2 = os.path.join(fp,sitename,'jpg_files','rejected')
+        if not os.path.exists(dest_folder2): os.makedirs(dest_folder2)
+        # copy all detections to new folder
+        shutil.copytree(source_folder,dest_folder1)
+        
+    # remove erroneous classifications
+    idx_remove = []
+    for k in range(len(output['im_classif'])):
+        # different size images
+        if k in idx_skip:
+            idx_remove.append(k)
+            if settings['save_figure'] == True:
+                # store rejected image
+                fn = output['filename'][k].split('_')[0] + '_' + output['filename'][k].split('_')[1] + '.jpg'
+                file1 = os.path.join(dest_folder1,fn)
+                file2 = os.path.join(dest_folder2,fn)
+                if os.path.exists(file1):
+                    shutil.move(file1,file2)
+            continue
+        
+        # calculate the difference
+        im_diff = np.abs(np.round(im_av)-output['im_classif'][k])
+        im_diff[~im_bin] = np.nan
+        # calculate the percentage of pixels that are different
+        prc_change = sum(sum(im_diff == 1))/sum(sum(im_bin))
+        if prc_change > settings['prc_image']:
+            # print('%.2f'%prc_change, end='..')
+            idx_remove.append(k)
+            if settings['save_figure'] == True:
+                # store rejected image
+                fn = output['filename'][k].split('_')[0] + '_' + output['filename'][k].split('_')[1] + '.jpg'
+                file1 = os.path.join(dest_folder1,fn)
+                file2 = os.path.join(dest_folder2,fn)
+                if os.path.exists(file1):
+                    shutil.move(file1,file2)
+                
+    # print how many images were removed
+    print('%d / %d images different size'%(len(idx_skip),len(output['im_classif'])))
+    print('%d / %d images wrong classif'%(len(idx_remove)-len(idx_skip),len(output['im_classif'])))
+    print('%d%% images removed'%(100*len(idx_remove)/len(output['im_classif'])))
+    if settings['save_figure'] == True:
+        print('\nKept images were saved in %s'%dest_folder1)
+        print('\nRejected images were saved in %s'%dest_folder2)
+    
+    # save figure for visual QA
+    fig,ax = plt.subplots(1,2,figsize=(15,8),sharex=True,sharey=True,tight_layout=True)
+    ax[0].set(title='Land-Water probability')
+    ax[0].axis('off')
+    ims = ax[0].imshow(1-im_av, cmap='coolwarm') 
+    cb = plt.colorbar(ims, ax=ax[0])
+    ax[1].set(title='Dry/wet pixels')
+    ax[1].axis('off')
+    ax[1].imshow(im_bin, cmap='gray')
+    ax[1].text(0.01,0.99,'%d/%d'%(len(idx_remove),len(output['im_classif'])),ha='left',va='top',
+               transform=ax[1].transAxes, bbox=dict(boxstyle="square", ec='k',fc='w'))
+    fp_fig = os.path.join(settings['inputs']['filepath'],settings['inputs']['sitename'], 'classif_qa.jpg')
+    fig.savefig(fp_fig, dpi=200)
+    print('Mean clasification image was saved in %s'%fp_fig)
+            
+    # clean up output dict (storing the classified image takes up a lot of space)
+    output.pop('im_classif')
+    idx_all = np.linspace(0, len(output['dates'])-1, len(output['dates']))
+    idx_keep = list(np.where(~np.isin(idx_all,idx_remove))[0])        
+    for key in output.keys():
+        output[key] = [output[key][_] for _ in idx_keep]
+    # store output
+    filepath = os.path.join(fp, sitename)
+    with open(os.path.join(filepath, sitename + '_output' + '.pkl'), 'wb') as f:
+        pickle.dump(output,f) 
+    
+    return output
