@@ -3,11 +3,14 @@
 *.mat
 *.tif
 *.mp4
-*.txt
 *checkpoint.ipynb
 *-checkpoint.py
 *.xml
-*.jpg
 *.pkl
 main.py
 \satellite_data
+datasets/DUCK/figs_profiles
+datasets/TORREYPINES/figs_dem
+datasets/TORREYPINES/figs_topo
+datasets/TRUCVERT/figs_dem
+\datasets/TRUCVERT/figs_topo

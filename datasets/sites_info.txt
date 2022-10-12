@@ -1,0 +1,22 @@
+{
+    "NARRABEEN": {
+        "beach_slope": 0.1,
+        "contour_level": 0.7,
+        "epsg": 28356
+    },
+    "DUCK": {
+        "beach_slope": 0.1,
+        "contour_level": 0.4,
+        "epsg": 32119
+    },
+    "TRUCVERT": {
+        "beach_slope": 0.05,
+        "contour_level": 1,
+        "epsg": 32630
+    },
+    "TORREYPINES": {
+        "beach_slope": 0.035,
+        "contour_level": 1.6,
+        "epsg": 26946
+    }
+}
