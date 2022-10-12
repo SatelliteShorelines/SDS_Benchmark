@@ -9,7 +9,6 @@ This folder contains all the data for testing satellite-derived shoreline mappin
 - (`Beach slopes`): estimated from the topographic surveys, can be used to apply a water level correction
 - (`Wave parameters`): not available at the moment but can be obtained if needed
 
-The information on the average beach-face slope and countour level used for the in situ shoreline timeseries is contained in the `sites_info.txt`.
+The information on the average beach-face slope, contour level used for the in situ shoreline timeseries, and local projection is contained in the `sites_info.txt`.
 
 The geospatial layers can be visualised in the QGIS file `qgis_overview.qgz` include in the repository.
-

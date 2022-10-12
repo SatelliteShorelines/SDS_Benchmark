@@ -75,7 +75,7 @@ The deadline for this first round of analysis is the end of the year (**01/12/20
 
 ## Benchmark datasets
 
-### Site 1: Narrabeen, Australia, WRL dataset
+### Site 1: Narrabeen, Australia, WRL/Andy Short dataset
 
 <p align="center">
 
