@@ -6,7 +6,7 @@
     },
     "DUCK": {
         "beach_slope": 0.1,
-        "contour_level": 0.4,
+        "contour_level": 0.585,
         "epsg": 32119
     },
     "TRUCVERT": {
@@ -15,8 +15,8 @@
         "epsg": 32630
     },
     "TORREYPINES": {
-        "beach_slope": 0.035,
-        "contour_level": 1.6,
+        "beach_slope": 0.045,
+        "contour_level": 0.792,
         "epsg": 26946
     }
 }
