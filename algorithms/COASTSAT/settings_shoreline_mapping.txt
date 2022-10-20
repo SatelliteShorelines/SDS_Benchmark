@@ -1,0 +1,13 @@
+{
+    "cloud_thresh": 0.1,
+    "dist_clouds": 300,
+    "check_detection": false,
+    "adjust_detection": false,
+    "save_figure": false,
+    "min_beach_area": 1000,
+    "min_length_sl": 500,
+    "cloud_mask_issue": true,
+    "sand_color": "latest",
+    "pan_off": false,
+    "max_dist_ref": 100
+}

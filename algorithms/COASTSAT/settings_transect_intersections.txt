@@ -1,0 +1,15 @@
+{
+    "along_dist": 25,
+    "min_points": 3,
+    "max_std": 15,
+    "max_range": 30,
+    "min_chainage": -100,
+    "multiple_inter": "auto",
+    "prc_multiple": 0.1,
+    "otsu_threshold": [
+        -0.5,
+        0
+    ],
+    "max_cross_change": 40,
+    "plot_fig": false
+}
