@@ -7,6 +7,7 @@
 *-checkpoint.py
 *.xml
 *.pkl
+*.html
 datasets/DUCK/figs_profiles
 datasets/TORREYPINES/figs_dem
 datasets/TORREYPINES/figs_topo
