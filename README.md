@@ -31,13 +31,18 @@ Currently there are 4 validation sites available, which are downloaded from thei
 The first Jupyter notebook, [1_preprocess_datasets.ipynb](https://github.com/kvos/SDS_Benchmark/blob/main/1_preprocess_datasets.ipynb), provides the code to download and process the publicly available shoreline datasets into time-series of shoreline change along cross-shore transects. Everyone is encouraged to run this notebook to get familiar with the benchmark sites.
 
 The following inputs are provided for each site:
-- `Region of Interest (ROI)`: to download/crop the satellite imagery
-- `Cross-shore transects`: to extract time-series of cross-shore shoreline change and apply a water level correct
-- `Modelled tides`: time-series of tide levels every 5 min from the FES2014 global tide model
-- `Beach slopes`: estimated from the topographic surveys, can be used to apply a water level correction
-- (`Wave parameters`): not available at the moment but can be obtained if needed
+- `Region of Interest (ROI)`: to download/crop the satellite imagery.
+- `Cross-shore transects`: to extract time-series of cross-shore shoreline change and apply a water level correct.
+- `Modelled tides`: time-series of tide levels every 5 min from the FES2014 global tide model.
+- `(Beach slopes)`: not available yet, will be estimated from the topographic surveys and can be used to apply a water level correction.
+- (`Wave parameters`): not available at the moment but can be obtained if needed.
 
 The geospatial layers can be visualised by opening the QGIS file `qgis_overview.qgz` include in the repository.
+
+Currently, additional information for applying satellite-derived shorelines at each site is available in the [`sites_info.txt`](./datasets/sites_info.txt). This includes:
+- an average beach-face slope value to use for water level corrections.
+- the contour level used to extract time-series of shoreline change from the topographic data (close to Mean High Water Springs for each site).
+- a local projected coordinate system for each site (using global coordinates can lead to large errors).
 
 Please use these inputs to ensure that differences between algorithms are not a result of differences in the inputs.
 
@@ -81,21 +86,20 @@ The deadline for this first round of analysis is the end of the year (**01/12/20
 
 <img src="./doc/site_narrabeen.PNG" alt="drawing" width="400"/>
 
-![image](https://user-images.githubusercontent.com/7217258/188481021-470a338c-739d-4fc8-8d9e-02bfa94cd38c.png)
+![image](./datasets/NARRABEEN/NARRABEEN_insitu_timeseries.jpg)
 
-![image](https://user-images.githubusercontent.com/7217258/188481493-47746dbb-a4ca-4901-8932-db011a1c396d.png)
+![image](./datasets/NARRABEEN/NARRABEEN_tides.jpg)
 
 </p>
-
 
 ### Site 2: Duck, North Carolina, FRF dataset
 <p align="center">
 
 <img src="./doc/site_duck.PNG" alt="drawing" width="800"/>
 
-![image](https://user-images.githubusercontent.com/7217258/188481583-a711f23e-7d06-442a-a781-0346b5dde219.png)
+![image](./datasets/DUCK/DUCK_insitu_timeseries.jpg)
 
-![image](https://user-images.githubusercontent.com/7217258/188481797-1429ee75-0d4c-4969-ace7-b34c1a10d4d0.png)
+![image](./datasets/DUCK/DUCK_tides.jpg)
 
 </p>
 
@@ -105,9 +109,9 @@ The deadline for this first round of analysis is the end of the year (**01/12/20
 
 <img src="./doc/site_trucvert.PNG" alt="drawing" width="600"/>
 
-![image](https://user-images.githubusercontent.com/7217258/188474332-c9104f70-398b-419e-93d6-a744c2cabb2c.png)
+![image](./datasets/TRUCVERT/TRUCVERT_insitu_timeseries.jpg)
 
-![image](https://user-images.githubusercontent.com/7217258/188474017-4131da6e-5c1a-4cca-83a1-336e6b5d57de.png)
+![image](./datasets/TRUCVERT/TRUCVERT_tides.jpg)
 
 </p>
 
@@ -117,9 +121,9 @@ The deadline for this first round of analysis is the end of the year (**01/12/20
 
 <img src="./doc/site_torreypines.PNG" alt="drawing" width="600"/>
 
-![image](https://user-images.githubusercontent.com/7217258/188481954-69a07b07-714b-4ed8-b9ea-c5991ff0d058.png)
+![image](./datasets/TORREYPINES/TORREYPINES_insitu_timeseries.jpg)
 
-![image](https://user-images.githubusercontent.com/7217258/188482153-8c921827-ffb1-461f-8c4b-b9d38592f1fc.png)
+![image](./datasets/TORREYPINES/TORREYPINES_tides.jpg)
 
 </p>
 
