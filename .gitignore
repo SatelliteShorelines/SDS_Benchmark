@@ -13,7 +13,7 @@ datasets/TORREYPINES/figs_dem
 datasets/TORREYPINES/figs_topo
 datasets/TRUCVERT/figs_dem
 \datasets/TRUCVERT/figs_topo
-main.py
+\results
 \satellite_data
 \satellite_data_old
-
+main.py
