@@ -40,4 +40,22 @@ Please provide an (rough) estimate of the time it took to run the workflow (e.g.
 
 ## Additional information
 
-The results are provided as raw shoreline timeseries and tidally-corrected shoreline timeseries.
+The results are provided for each site as `raw shoreline timeseries` and `tidally-corrected shoreline timeseries` (using FES2014 modelled tides).
+
+More information about the shoreline mapping at each site is shown below:
+#### NARRABEEN
+![image](./NARRABEEN/mapped_shorelines.jpg)
+![image](./NARRABEEN/tide_timeseries.jpg)
+![image](./NARRABEEN/NARRABEEN_timeseries.jpg)
+#### DUCK
+![image](./DUCK/mapped_shorelines.jpg)
+![image](./DUCK/tide_timeseries.jpg)
+![image](./DUCK/DUCK_timeseries.jpg)
+#### TRUCVERT
+![image](./TRUCVERT/mapped_shorelines.jpg)
+![image](./TRUCVERT/tide_timeseries.jpg)
+![image](./TRUCVERT/TRUCVERT_timeseries.jpg)
+#### TORREYPINES
+![image](./TORREYPINES/mapped_shorelines.jpg)
+![image](./TORREYPINES/tide_timeseries.jpg)
+![image](./TORREYPINES/TORREYPINES_timeseries.jpg)

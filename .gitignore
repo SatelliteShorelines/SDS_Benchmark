@@ -15,5 +15,6 @@ datasets/TRUCVERT/figs_dem
 \datasets/TRUCVERT/figs_topo
 \results
 \satellite_data
+\satellite_data_C02
 \satellite_data_old
 main.py
