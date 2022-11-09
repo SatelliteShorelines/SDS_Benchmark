@@ -18,5 +18,10 @@
         "beach_slope": 0.045,
         "contour_level": 0.792,
         "epsg": 26946
+    },
+    "CALAMILLOR": {
+        "beach_slope": 0.1,
+        "contour_level": 0,
+        "epsg": 2062
     }
 }

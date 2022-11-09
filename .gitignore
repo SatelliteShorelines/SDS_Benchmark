@@ -14,7 +14,8 @@ datasets/TORREYPINES/figs_topo
 datasets/TRUCVERT/figs_dem
 \datasets/TRUCVERT/figs_topo
 \results
-\satellite_data
+\deprecated
+\satellite_data_C01
 \satellite_data_C02
 \satellite_data_old
 main.py
