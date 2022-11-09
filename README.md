@@ -30,6 +30,8 @@ Currently there are 4 validation sites available, which are downloaded from thei
 
 The first Jupyter notebook, [1_preprocess_datasets.ipynb](https://github.com/kvos/SDS_Benchmark/blob/main/1_preprocess_datasets.ipynb), provides the code to download and process the publicly available shoreline datasets into time-series of shoreline change along cross-shore transects. Everyone is encouraged to run this notebook to get familiar with the benchmark sites.
 
+The second Jupyter notebook, [2_compare_sat_to_groundtruth.ipynb](https://github.com/kvos/SDS_Benchmark/blob/main/2_compare_sat_to_groundtruth.ipynb), provides the code to compare the satellite-derived time-series of shoreline change (from any submission) with the groundtruth. It can only be run after creating the groundtruth datasets with the first notebook.
+
 The following inputs are provided for each site:
 - `Region of Interest (ROI)`: to download/crop the satellite imagery.
 - `Cross-shore transects`: to extract time-series of cross-shore shoreline change and apply a water level correct.
