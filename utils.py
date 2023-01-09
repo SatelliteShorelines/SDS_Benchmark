@@ -109,12 +109,17 @@ def monthly_average(dates, chainages):
 def compare_timeseries(ts,gt,key,settings):
     if key not in gt.keys():
         raise Exception('transect name %s does not exist in grountruth file'%key)
-    # remove nans
-    chainage = np.array(ts[key])
-    idx_nan = np.isnan(chainage)
-    dates_nonans = [ts['dates'][k].to_pydatetime() for k in np.where(~idx_nan)[0]]
-    satnames_nonans = [ts['satname'][k] for k in np.where(~idx_nan)[0]]
-    chain_nonans = chainage[~idx_nan]
+    if isinstance(ts, pd.DataFrame):
+        # remove nans
+        chainage = np.array(ts[key])
+        idx_nan = np.isnan(chainage)
+        dates_nonans = [ts['dates'][k].to_pydatetime() for k in np.where(~idx_nan)[0]]
+        satnames_nonans = [ts['satname'][k] for k in np.where(~idx_nan)[0]]
+        chain_nonans = chainage[~idx_nan]
+    else:
+        chain_nonans = ts['chainage']
+        dates_nonans = ts['dates']
+        satnames_nonans = ['Landsat' for _ in range(len(ts['dates']))]
     # define satellite and survey time-series
     chain_sat_dm = chain_nonans
     chain_sur_dm = gt[key]['chainages']
