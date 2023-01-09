@@ -42,7 +42,7 @@ Since the entire workflow is based on GEE, it has no requirement for client-side
 | Location    | Download time (hrs) | Mapping time (hrs) | Total time (hrs) |
 |-------------|------------------------|----------------------|------------------|
 | NARRABEEN | 0                    | 0.05                   | 0.05         |
-| DUCK     | 0                     |       0.05               |      0.05            |
+| DUCK     | 0                     |       0.15               |      0.05            |
 | TRUCVERT    |	0                       |         0.1             |        0.1          |
 | TORREYPINES    |	0                        |      0.15                |    0.15              |
 
