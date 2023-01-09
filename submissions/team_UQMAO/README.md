@@ -1,10 +1,9 @@
-# Example submission
-
-Here the submission format is described.
-
 ## Author(s)
 
 - Yongjing Mao (The University of Queensland)
+
+## Related Paper
+https://doi.org/10.1016/j.isprsjprs.2021.09.021
 
 ## Mapped locations
 
@@ -42,7 +41,7 @@ Since the entire workflow is based on GEE, it has no requirement for client-side
 | Location    | Download time (hrs) | Mapping time (hrs) | Total time (hrs) |
 |-------------|------------------------|----------------------|------------------|
 | NARRABEEN | 0                    | 0.05                   | 0.05         |
-| DUCK     | 0                     |       0.05               |      0.05            |
+| DUCK     | 0                     |       0.15               |      0.05            |
 | TRUCVERT    |	0                       |         0.1             |        0.1          |
 | TORREYPINES    |	0                        |      0.15                |    0.15              |
 
