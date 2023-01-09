@@ -1,10 +1,9 @@
-# Example submission
-
-Here the submission format is described.
-
 ## Author(s)
 
 - Yongjing Mao (The University of Queensland)
+
+## Related Paper
+https://doi.org/10.1016/j.isprsjprs.2021.09.021
 
 ## Mapped locations
 
