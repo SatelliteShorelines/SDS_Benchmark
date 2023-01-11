@@ -122,7 +122,12 @@ def compare_timeseries(ts,gt,key,settings):
         satnames_nonans = ['Landsat' for _ in range(len(ts['dates']))]
     # define satellite and survey time-series
     chain_sat_dm = chain_nonans
-    chain_sur_dm = gt[key]['chainages']
+    if 'chainage' in gt[key].keys():
+        chain_str = 'chainage'
+    elif 'chainages' in gt[key].keys():
+        chain_str = 'chainages'
+    chain_sur_dm = gt[key][chain_str]
+
     # plot the time-series
     fig= plt.figure(figsize=[15,8], tight_layout=True)
     gs = gridspec.GridSpec(2,3)
@@ -148,14 +153,14 @@ def compare_timeseries(ts,gt,key,settings):
             # if a point within min_days, take that point (no interpolation)
             if np.min(np.abs(days_diff)) < settings['min_days']:
                 idx_closest = np.where(np.abs(days_diff) == np.min(np.abs(days_diff)))
-                chain_int[k] = float(gt[key]['chainages'][idx_closest[0][0]])
+                chain_int[k] = float(gt[key][chain_str][idx_closest[0][0]])
             else: # otherwise, between min_days and max_days, interpolate between the 2 closest points
                 if sum(days_diff > 0) == 0:
                     break
                 idx_after = np.where(days_diff > 0)[0][0]
                 idx_before = idx_after - 1
                 x = [gt[key]['dates'][idx_before].toordinal() , gt[key]['dates'][idx_after].toordinal()]
-                y = [gt[key]['chainages'][idx_before], gt[key]['chainages'][idx_after]]
+                y = [gt[key][chain_str][idx_before], gt[key][chain_str][idx_after]]
                 f = interpolate.interp1d(x, y,bounds_error=True)
                 try:
                     chain_int[k] = float(f(date.toordinal()))
