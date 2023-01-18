@@ -36,8 +36,8 @@ The following inputs are provided for each site:
 - `Region of Interest (ROI)`: to download/crop the satellite imagery.
 - `Cross-shore transects`: to extract time-series of cross-shore shoreline change and apply a water level correct.
 - `Modelled tides`: time-series of tide levels every 5 min from the FES2014 global tide model.
+- `Wave parameters`: time-series of deep-water wave parameters from the ERA5 reanalysis.
 - `(Beach slopes)`: not available yet, will be estimated from the topographic surveys and can be used to apply a water level correction.
-- (`Wave parameters`): not available at the moment but can be obtained if needed.
 
 The geospatial layers can be visualised by opening the QGIS file `qgis_overview.qgz` include in the repository.
 
