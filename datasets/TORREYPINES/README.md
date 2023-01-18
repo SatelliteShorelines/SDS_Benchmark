@@ -15,10 +15,13 @@ The time-series of shoreline change were extracted from in situ surveys for the 
 
 ![image](./TORREYPINES_insitu_timeseries.jpg)
 
-Additional information to perform a tidal correction is also provided:
+Additional information to perform a tidal/wave correction is also provided:
 - Beach-face slope: use $tan\beta = 0.035$
 - Modelled tide levels: `TORREYPINES_tides.csv` dates in UTC time and tide levels in metres Above Mean Sea Level
+- Hindcast wave parameters: `TORREYPINES_waves_ERA5.csv` dates in UTC time and wave parameters are from ERA5 reanalysis.
 
 ![image](./TORREYPINES_tides.jpg)
+![image](./TORREYPINES_waves.jpg)
+
 
 More info about this site is located in the `sites_info.txt` file in the folder above.

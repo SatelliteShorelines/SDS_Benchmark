@@ -13,10 +13,13 @@ datasets/TORREYPINES/figs_dem
 datasets/TORREYPINES/figs_topo
 datasets/TRUCVERT/figs_dem
 \datasets/TRUCVERT/figs_topo
-\results
-\deprecated
 \satellite_data_C01
 \satellite_data_C02
 \satellite_data_old
-main.py
-algorithms/DELTARES
+\results
+\deprecated
+\evaluation
+algorithms/COASTSAT/COASTSAT_extract_shorelines-C01.ipynb
+assess_submissions.py
+generate_transects.py
+get_waves_ERA5.py

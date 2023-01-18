@@ -15,10 +15,12 @@ The time-series of shoreline change were extracted from in situ surveys for the 
 
 ![image](./TRUCVERT_insitu_timeseries.jpg)
 
-Additional information to perform a tidal correction is also provided:
+Additional information to perform a tidal/wave correction is also provided:
 - Beach-face slope: use $tan\beta = 0.05$
-- Modelled tide levels: `NARRABEEN_tides.csv` dates in UTC time and tide levels in metres Above Mean Sea Level
+- Modelled tide levels: `TRUCVERT_tides.csv` dates in UTC time and tide levels in metres Above Mean Sea Level
+- Hindcast wave parameters: `TRUCVERT_waves_ERA5.csv` dates in UTC time and wave parameters are from ERA5 reanalysis.
 
 ![image](./TRUCVERT_tides.jpg)
+![image](./TRUCVERT_waves.jpg)
 
 More info about this site is located in the `sites_info.txt` file in the folder above.

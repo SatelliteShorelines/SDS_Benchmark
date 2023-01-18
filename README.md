@@ -92,6 +92,7 @@ The deadline for this first round of analysis is the end of the year (**01/12/20
 
 ![image](./datasets/NARRABEEN/NARRABEEN_tides.jpg)
 
+![image](./datasets/NARRABEEN/NARRABEEN_waves.jpg)
 </p>
 
 ### Site 2: Duck, North Carolina, FRF dataset
@@ -103,6 +104,7 @@ The deadline for this first round of analysis is the end of the year (**01/12/20
 
 ![image](./datasets/DUCK/DUCK_tides.jpg)
 
+![image](./datasets/DUCK/DUCK_waves.jpg)
 </p>
 
 ### Site 3: Truc Vert, France, METHYS dataset
@@ -115,6 +117,7 @@ The deadline for this first round of analysis is the end of the year (**01/12/20
 
 ![image](./datasets/TRUCVERT/TRUCVERT_tides.jpg)
 
+![image](./datasets/TRUCVERT/TRUCVERT_waves.jpg)
 </p>
 
 ### Site 4: Torrey Pines, California, Scripps dataset
@@ -127,6 +130,7 @@ The deadline for this first round of analysis is the end of the year (**01/12/20
 
 ![image](./datasets/TORREYPINES/TORREYPINES_tides.jpg)
 
+![image](./datasets/TORREYPINES/TORREYPINES_waves.jpg)
 </p>
 
 ## Questions and Comments
