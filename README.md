@@ -41,10 +41,14 @@ The following inputs are provided for each site:
 
 The geospatial layers can be visualised by opening the QGIS file `qgis_overview.qgz` include in the repository.
 
-Currently, additional information for applying satellite-derived shorelines at each site is available in the [`sites_info.txt`](./datasets/sites_info.txt). This includes:
-- an average beach-face slope value to use for water level corrections.
-- the contour level used to extract time-series of shoreline change from the topographic data (close to Mean High Water Springs for each site).
-- a local projected coordinate system for each site (using global coordinates can lead to large errors).
+Currently, additional information for applying satellite-derived shorelines at each site is available in the [`sites_info.txt`](./datasets/sites_info.txt).
+
+| Location    | Average Beach Slope (tanBeta)| EPSG code | Groundtruth Elevation Datum | Offset NAVD88 to MSL| MHWS contour (above MSL) |
+|---------    |-------|-------|---------|----------|---------|
+| NARRABEEN   | 0.1   | 28356 |  MSL    | NA       |  0.7    |
+| DUCK        | 0.1   | 32119 |  NAVD88 | -0.128 m |  0.585  |
+| TRUCVERT    | 0.05  | 32630 |  MSL    | NA       |  1.5    |
+| TORREYPINES | 0.045 | 26946 |  NAVD88 | 0.774 m  |  0.792  |
 
 Please use these inputs to ensure that differences between algorithms are not a result of differences in the inputs.
 

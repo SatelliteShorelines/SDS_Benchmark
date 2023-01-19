@@ -11,11 +11,11 @@ This folder contains all the data for testing satellite-derived shoreline mappin
 
 The information on the average beach-face slope, contour level used for the in situ shoreline timeseries, and local projection is contained in the `sites_info.txt`:
 
-| Location    | Average Beach Slope (tanBeta)| Contour level (above MSL) | EPSG code |
-|---------    |-----|----|-------|
-| NARRABEEN   | 0.1 | 0.7 | 28356 |
-| DUCK        | 0.1  | 0.585 | 32119 |
-| TRUCVERT    | 0.05  | 1.5 | 32630 |
-| TORREYPINES | 0.045 | 0.792 | 26946 |
+| Location    | Average Beach Slope (tanBeta)| EPSG code | Groundtruth Elevation Datum | Offset NAVD88 to MSL| MHWS contour (above MSL) |
+|---------    |-------|-------|---------|----------|---------|
+| NARRABEEN   | 0.1   | 28356 |  MSL    | NA       |  0.7    |
+| DUCK        | 0.1   | 32119 |  NAVD88 | -0.128 m |  0.585  |
+| TRUCVERT    | 0.05  | 32630 |  MSL    | NA       |  1.5    |
+| TORREYPINES | 0.045 | 26946 |  NAVD88 | 0.774 m  |  0.792  |
 
 The geospatial layers can be visualised in the QGIS file `qgis_overview.qgz` include in the repository.

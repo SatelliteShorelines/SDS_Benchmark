@@ -11,7 +11,7 @@ It is recommended to use `epsg:26946` as a local projected coordinate system.
 
 ![image](./TORREYPINES_inputs.jpg)
 
-The time-series of shoreline change were extracted from in situ surveys for the 1.6 m NAVD88 contour (equivalent to MHHW):
+The time-series of shoreline change were extracted from in situ surveys for the 1.566 m NAVD88 contour (equivalent to MHHW, and 0.792 m AMSL):
 
 ![image](./TORREYPINES_insitu_timeseries.jpg)
 

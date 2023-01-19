@@ -11,13 +11,13 @@ It is recommended to use `epsg:32119` as a local projected coordinate system.
 
 ![image](./DUCK_inputs.jpg)
 
-The time-series of shoreline change were extracted from in situ surveys for the 0.4 m NAVD88 contour (equivalent to MHW):
+The time-series of shoreline change were extracted from in situ surveys for the 0.457 m NAVD88 contour (equivalent to MHHW, and 0.585 m AMSL):
 
 ![image](./DUCK_insitu_timeseries.jpg)
 
 Additional information to perform a tidal/wave correction is also provided:
 - Beach-face slope: use $tan\beta = 0.1$
-- Modelled tide levels: `DUCK_tides.csv` dates in UTC time and tide levels in metres Above Mean Sea Level
+- Modelled tide levels: `DUCK_tides.csv` dates in UTC time and tide levels in metres Above Mean Sea Level (AMSL).
 - Hindcast wave parameters: `DUCK_waves_ERA5.csv` dates in UTC time and wave parameters are from ERA5 reanalysis.
 
 ![image](./DUCK_tides.jpg)
