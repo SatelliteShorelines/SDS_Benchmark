@@ -8,6 +8,7 @@
 *.xml
 *.pkl
 *.html
+*.docx
 datasets/DUCK/figs_profiles
 datasets/TORREYPINES/figs_dem
 datasets/TORREYPINES/figs_topo
