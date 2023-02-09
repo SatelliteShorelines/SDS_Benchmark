@@ -15,11 +15,13 @@ datasets/TRUCVERT/figs_dem
 \datasets/TRUCVERT/figs_topo
 \satellite_data_C01
 \satellite_data_C02
-\satellite_data_old
+\satellite_data_S2
 \results
 \deprecated
-\evaluation
 algorithms/COASTSAT/COASTSAT_extract_shorelines-C01.ipynb
+algorithms/COASTSAT/COASTSAT_shorelines_S2.ipynb
 assess_submissions.py
 generate_transects.py
 get_waves_ERA5.py
+\evaluation
+
