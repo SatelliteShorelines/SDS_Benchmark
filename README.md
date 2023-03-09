@@ -16,6 +16,15 @@ With this project, we want to showcase the diversity of algorithms that can be a
 - evaluate the accuracy of established satellite-derived shoreline (SDS) algorithms against benchmark datasets with a set methodology.
 - test new algorithms, future developments and enhancements of existing SDS workflows.
 
+### Notebooks
+
+The following notebooks are available in this repo:
+- [1_preprocess_datasets.ipynb](https://github.com/kvos/SDS_Benchmark/blob/main/1_preprocess_datasets.ipynb): download and preprocesse the grountruth data at the four benchmark sites.
+- [2_check_shoreline_accuracy.ipynb](https://github.com/kvos/SDS_Benchmark/blob/main/2_check_shoreline_accuracy.ipynb): compare your satellite-derived shoreline time-series against the groundtruth (adjust to read your submission files).
+- [3_evaluate_submissions_Landsat_MSL.ipynb](https://github.com/kvos/SDS_Benchmark/blob/main/3_evaluate_submissions_Landsat_MSL.ipynb): evaluate all the submissions using Landsat against the MSL contour.
+- [4_evaluate_Landsat_vs_Sentinel2.ipynb](https://github.com/kvos/SDS_Benchmark/blob/main/4_evaluate_Landsat_vs_Sentinel2.ipynb): evaluate the time-series obtained from Landsat and Sentinel-2 for the submissions that use individual images (no composites).
+- [5_evaluate_wave_correction.ipynb](https://github.com/kvos/SDS_Benchmark/blob/main/5_evaluate_wave_correction.ipynb): evaluate the effect of adding a wave-setup correction.
+
 ## Input data
 
 Participants can run their shoreline mapping algorithm at each of the sites using the input files provided.
@@ -29,8 +38,6 @@ Currently there are 4 validation sites available, which are downloaded from thei
 4. Torrey Pines, California, USA [ref](https://www.nature.com/articles/s41597-019-0167-6)
 
 The first Jupyter notebook, [1_preprocess_datasets.ipynb](https://github.com/kvos/SDS_Benchmark/blob/main/1_preprocess_datasets.ipynb), provides the code to download and process the publicly available shoreline datasets into time-series of shoreline change along cross-shore transects. Everyone is encouraged to run this notebook to get familiar with the benchmark sites.
-
-The second Jupyter notebook, [2_compare_sat_to_groundtruth.ipynb](https://github.com/kvos/SDS_Benchmark/blob/main/2_compare_sat_to_groundtruth.ipynb), provides the code to compare the satellite-derived time-series of shoreline change (from any submission) with the groundtruth. It can only be run after creating the groundtruth datasets with the first notebook.
 
 The following inputs are provided for each site:
 - `Region of Interest (ROI)`: to download/crop the satellite imagery.

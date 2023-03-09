@@ -153,6 +153,7 @@ def monthly_average(dates, chainages):
 ###################################################################################################
 
 def compare_timeseries(ts,gt,key,settings):
+    "Compares time-series using by interpolating the groundtruth around the satellite data, see compare_timeseries2 for the other way around"
     if key not in gt.keys():
         raise Exception('transect name %s does not exist in grountruth file'%key)
     if isinstance(ts, pd.DataFrame):
@@ -289,6 +290,7 @@ def compare_timeseries(ts,gt,key,settings):
 
 
 def compare_timeseries2(ts,gt,key,settings):
+    "Compares time-series using by interpolating the satellite data around the groundtruth, see compare_timeseries for the other way around"
     if key not in gt.keys():
         raise Exception('transect name %s does not exist in grountruth file'%key)
     if isinstance(ts, pd.DataFrame):
