@@ -80,7 +80,7 @@ for sitename in names_datasets:
 #%% Compute intersections and tidally correct to MSL and MHWS
 
 fp_shorex = os.path.join(os.pardir,os.pardir,'submissions','team_SHOREX')
-for sitename in ['NARRABEEN']:#names_datasets:
+for sitename in ['DUCK']:#names_datasets:
     if sitename in ['CALAMILLOR']: continue
     print(sitename)
     # load shorelines
