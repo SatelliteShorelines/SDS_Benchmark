@@ -92,6 +92,10 @@ for sitename in names_datasets:
     # get tide levels corresponding to the time of image acquisition
     for key in cross_distance.keys():
         print(key)
+        if os.path.exists(os.path.join(fp_cassie,sitename,
+                                       'tidally_corrected_timeseries_MHWS',
+                                       '%s_timeseries_tidally_corrected.csv'%key)):
+            continue
         dates_sat = cross_distance[key]['dates']
         tides_sat = SDS_tools.get_closest_datapoint(dates_sat, dates_ts, tides_ts)
         # repeat for MSL and MHWS
@@ -108,6 +112,8 @@ for sitename in names_datasets:
         fp_tc_timeseries = os.path.join(fp_cassie,sitename,output_folder)
         if not os.path.exists(fp_tc_timeseries): os.makedirs(fp_tc_timeseries)
         for key in cross_distance.keys():
+            if os.path.exists(os.path.join(fp_tc_timeseries,'%s_timeseries_tidally_corrected.csv'%key)):
+                continue
             out_dict = dict([])
             out_dict['dates'] = cross_distance[key]['dates']
             out_dict[key] = cross_distance[key]['chainage_%s'%c]
@@ -162,6 +168,10 @@ for sitename in names_datasets:
     # get tide levels corresponding to the time of image acquisition
     for key in cross_distance.keys():
         print(key)
+        if os.path.exists(os.path.join(fp_cassie,sitename,
+                                       'tidally_corrected_timeseries_MHWS_S2',
+                                       '%s_timeseries_tidally_corrected.csv'%key)):
+            continue
         dates_sat = cross_distance[key]['dates']
         tides_sat = SDS_tools.get_closest_datapoint(dates_sat, dates_ts, tides_ts)
         # repeat for MSL and MHWS
@@ -178,6 +188,8 @@ for sitename in names_datasets:
         fp_tc_timeseries = os.path.join(fp_cassie,sitename,output_folder)
         if not os.path.exists(fp_tc_timeseries): os.makedirs(fp_tc_timeseries)
         for key in cross_distance.keys():
+            if os.path.exists(os.path.join(fp_tc_timeseries,'%s_timeseries_tidally_corrected.csv'%key)):
+                continue
             out_dict = dict([])
             out_dict['dates'] = cross_distance[key]['dates']
             out_dict[key] = cross_distance[key]['chainage_%s'%c]
