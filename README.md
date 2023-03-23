@@ -22,8 +22,8 @@ The following notebooks are available in this repo:
 - [1_preprocess_datasets.ipynb](https://github.com/kvos/SDS_Benchmark/blob/main/1_preprocess_datasets.ipynb): download and preprocesse the grountruth data at the four benchmark sites.
 - [2_check_shoreline_accuracy.ipynb](https://github.com/kvos/SDS_Benchmark/blob/main/2_check_shoreline_accuracy.ipynb): compare your satellite-derived shoreline time-series against the groundtruth (adjust to read your submission files).
 - [3_evaluate_submissions_Landsat_MSL.ipynb](https://github.com/kvos/SDS_Benchmark/blob/main/3_evaluate_submissions_Landsat_MSL.ipynb): evaluate all the submissions using Landsat against the MSL contour.
-- [4_evaluate_Landsat_vs_Sentinel2.ipynb](https://github.com/kvos/SDS_Benchmark/blob/main/4_evaluate_Landsat_vs_Sentinel2.ipynb): evaluate the time-series obtained from Landsat and Sentinel-2 for the submissions that use individual images (no composites).
-- [5_evaluate_wave_correction.ipynb](https://github.com/kvos/SDS_Benchmark/blob/main/5_evaluate_wave_correction.ipynb): evaluate the effect of adding a wave-setup correction.
+- [4_evaluate_Landsat_vs_Sentinel2.ipynb](https://github.com/SatelliteShorelines/SDS_Benchmark/blob/main/4_evaluate_Landsat_vs_S2.ipynb): evaluate the time-series obtained from Landsat and Sentinel-2 for the submissions that use individual images (no composites).
+- [5_evaluate_wave_correction.ipynb](https://github.com/SatelliteShorelines/SDS_Benchmark/blob/main/5_evaluate_wave_correction.ipynb): evaluate the effect of adding a wave-setup correction.
 
 ## Input data
 
