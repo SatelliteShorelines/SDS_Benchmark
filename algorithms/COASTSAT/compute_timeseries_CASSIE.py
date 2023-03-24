@@ -74,7 +74,7 @@ for sitename in names_datasets:
         # get transect name from filename
         key = fn.split('_')[0]
         key = key.split('.csv')[0]
-        if not key in selected_transects[sitename]: continue
+        # if not key in selected_transects[sitename]: continue
         # read csv file and extract dates and chainages
         df = pd.read_csv(fp,sep=', ',names=['dates','Distance','satname'],
                          skiprows=1)
@@ -158,7 +158,7 @@ for sitename in names_datasets:
                 
 #%% For Sentinel-2
 fp_cassie = os.path.join(os.pardir,os.pardir,'submissions','team_CASSIE')
-for sitename in names_datasets:
+for sitename in  names_datasets:
     if sitename in ['CALAMILLOR']: continue
     print('\n%s'%sitename)
     # locate submitted time-series
@@ -175,7 +175,7 @@ for sitename in names_datasets:
         # get transect name from filename
         key = fn.split('_')[0]
         key = key.split('.csv')[0]
-        if not key in selected_transects[sitename]: continue
+        # if not key in selected_transects[sitename]: continue
         # read csv file and extract dates and chainages
         df = pd.read_csv(fp,sep=', ',names=['dates','Distance','satname'],
                          skiprows=1)
