@@ -39,6 +39,13 @@ else:
     with open(fp_info,'w') as f: json.dump(sites_info,f,indent=4)
 for key in sites_info.keys(): print('%s: %s'%(key,sites_info[key]))
 
+# load settings file for outliuer detection
+fp_settings = 'settings_transect_intersections.txt'
+with open(fp_settings,'r') as f: settings_transects = json.load(f)
+settings_transects['max_cross_change'] = 50
+settings_transects['otsu_threshold'] = [np.nan, np.nan]
+settings_transects['plot_fig'] = False
+
 #%% Compute intersections and tidally correct to MSL and MHWS
 
 selected_transects = {
@@ -61,14 +68,13 @@ for sitename in names_datasets:
     data_folder = os.path.join(fp_datasets,sitename)
     # load time-series
     fn_transects = os.listdir(fp_timeseries)
-    
     cross_distance = {}
     for i,fn in enumerate(fn_transects):
         fp = os.path.join(fp_timeseries,fn)
         # get transect name from filename
         key = fn.split('_')[0]
         key = key.split('.csv')[0]
-        # if not key in selected_transects[sitename]: continue
+        if not key in selected_transects[sitename]: continue
         # read csv file and extract dates and chainages
         df = pd.read_csv(fp,sep=', ',names=['dates','Distance','satname'],
                          skiprows=1)
@@ -77,8 +83,32 @@ for sitename in names_datasets:
             df.at[k,'satname'] = df.at[k,'satname'][:-1]
         chainage = np.array(df['Distance'])
         dates_sat = [pytz.utc.localize(datetime.strptime(_[:-6],'%Y-%m-%d %H:%M:%S')) for _ in df['dates']] 
-        cross_distance[key] = {'chainage':chainage,
-                               'dates': dates_sat}
+        if sitename in ['TORREYPINES','TRUCVERT']:
+            cross_distance[key] = {'chainage':chainage,
+                                   'dates': dates_sat}
+        else:
+            idx_nonan = np.where(~np.isnan(chainage))[0]
+            chainage1 = [chainage[k] for k in idx_nonan]
+            dates1 = [dates_sat[k] for k in idx_nonan]
+            chainage2, dates2 = SDS_transects.identify_outliers(list(chainage1), dates1, settings_transects['max_cross_change'])
+            cross_distance[key] = {'chainage':np.array(chainage2),
+                                    'dates': dates2}
+            # figure for QA
+            if settings_transects['plot_fig']:
+                fig,ax=plt.subplots(1,1,figsize=[12,6], sharex=True)
+                fig.set_tight_layout(True)
+                ax.grid(linestyle=':', color='0.5')
+                ax.set(ylabel='distance [m]',
+                          title= 'Transect %s original time-series - %d points' % (key, len(chainage)))
+                mean_cross_dist = np.nanmedian(chainage1)
+                # plot the data points
+                ax.plot(dates1, chainage1-mean_cross_dist, 'C0-')
+                ax.plot(dates1, chainage1-mean_cross_dist, 'C3o', ms=4, mec='k', mew=0.7,label='spike')
+                # plot the indices removed because of the threshold
+                ax.plot(dates2, chainage2-mean_cross_dist, 'C2o', ms=4, mec='k', mew=0.7,label='kept')
+                ax.legend(ncol=2,loc='upper right')
+                # plot the final time-series
+                print('%s  - outliers removed: %d'%(key, len(dates1) - len(dates2)))
     #########################################################################################################
     # Tidal correction
     #########################################################################################################
@@ -92,10 +122,10 @@ for sitename in names_datasets:
     # get tide levels corresponding to the time of image acquisition
     for key in cross_distance.keys():
         print(key)
-        if os.path.exists(os.path.join(fp_cassie,sitename,
-                                       'tidally_corrected_timeseries_MHWS',
-                                       '%s_timeseries_tidally_corrected.csv'%key)):
-            continue
+        # if os.path.exists(os.path.join(fp_cassie,sitename,
+        #                                'tidally_corrected_timeseries_MHWS',
+        #                                '%s_timeseries_tidally_corrected.csv'%key)):
+        #     continue
         dates_sat = cross_distance[key]['dates']
         tides_sat = SDS_tools.get_closest_datapoint(dates_sat, dates_ts, tides_ts)
         # repeat for MSL and MHWS
@@ -106,14 +136,15 @@ for sitename in names_datasets:
             if sitename == 'TRUCVERT':     # remove low tide images for TRUCVERT only (based on Castelle et al. 2021)
                 for i in range(len(tides_sat)):
                     if tides_sat[i] < 0.2: cross_distance[key]['chainage_%s'%c][i] = np.nan
+
     # save in .csv files
     for c in ref_elev.keys():
         output_folder = 'tidally_corrected_timeseries_%s'%c
         fp_tc_timeseries = os.path.join(fp_cassie,sitename,output_folder)
         if not os.path.exists(fp_tc_timeseries): os.makedirs(fp_tc_timeseries)
         for key in cross_distance.keys():
-            if os.path.exists(os.path.join(fp_tc_timeseries,'%s_timeseries_tidally_corrected.csv'%key)):
-                continue
+            # if os.path.exists(os.path.join(fp_tc_timeseries,'%s_timeseries_tidally_corrected.csv'%key)):
+            #     continue
             out_dict = dict([])
             out_dict['dates'] = cross_distance[key]['dates']
             out_dict[key] = cross_distance[key]['chainage_%s'%c]
@@ -144,7 +175,7 @@ for sitename in names_datasets:
         # get transect name from filename
         key = fn.split('_')[0]
         key = key.split('.csv')[0]
-        # if not key in selected_transects[sitename]: continue
+        if not key in selected_transects[sitename]: continue
         # read csv file and extract dates and chainages
         df = pd.read_csv(fp,sep=', ',names=['dates','Distance','satname'],
                          skiprows=1)
@@ -153,8 +184,32 @@ for sitename in names_datasets:
             df.at[k,'satname'] = df.at[k,'satname'][:-1]
         chainage = np.array(df['Distance'])
         dates_sat = [pytz.utc.localize(datetime.strptime(_[:-6],'%Y-%m-%d %H:%M:%S')) for _ in df['dates']] 
-        cross_distance[key] = {'chainage':chainage,
-                               'dates': dates_sat}
+        if sitename in ['TORREYPINES','TRUCVERT']:
+            cross_distance[key] = {'chainage':chainage,
+                                   'dates': dates_sat}
+        else:
+            idx_nonan = np.where(~np.isnan(chainage))[0]
+            chainage1 = [chainage[k] for k in idx_nonan]
+            dates1 = [dates_sat[k] for k in idx_nonan]
+            chainage2, dates2 = SDS_transects.identify_outliers(list(chainage1), dates1, settings_transects['max_cross_change'])
+            cross_distance[key] = {'chainage':np.array(chainage2),
+                                    'dates': dates2}
+            # figure for QA
+            if settings_transects['plot_fig']:
+                fig,ax=plt.subplots(1,1,figsize=[12,6], sharex=True)
+                fig.set_tight_layout(True)
+                ax.grid(linestyle=':', color='0.5')
+                ax.set(ylabel='distance [m]',
+                          title= 'Transect %s original time-series - %d points' % (key, len(chainage)))
+                mean_cross_dist = np.nanmedian(chainage1)
+                # plot the data points
+                ax.plot(dates1, chainage1-mean_cross_dist, 'C0-')
+                ax.plot(dates1, chainage1-mean_cross_dist, 'C3o', ms=4, mec='k', mew=0.7,label='spike')
+                # plot the indices removed because of the threshold
+                ax.plot(dates2, chainage2-mean_cross_dist, 'C2o', ms=4, mec='k', mew=0.7,label='kept')
+                ax.legend(ncol=2,loc='upper right')
+                # plot the final time-series
+                print('%s  - outliers removed: %d'%(key, len(dates1) - len(dates2)))
     #########################################################################################################
     # Tidal correction
     #########################################################################################################
@@ -168,10 +223,10 @@ for sitename in names_datasets:
     # get tide levels corresponding to the time of image acquisition
     for key in cross_distance.keys():
         print(key)
-        if os.path.exists(os.path.join(fp_cassie,sitename,
-                                       'tidally_corrected_timeseries_MHWS_S2',
-                                       '%s_timeseries_tidally_corrected.csv'%key)):
-            continue
+        # if os.path.exists(os.path.join(fp_cassie,sitename,
+        #                                'tidally_corrected_timeseries_MHWS_S2',
+        #                                '%s_timeseries_tidally_corrected.csv'%key)):
+        #     continue
         dates_sat = cross_distance[key]['dates']
         tides_sat = SDS_tools.get_closest_datapoint(dates_sat, dates_ts, tides_ts)
         # repeat for MSL and MHWS
@@ -188,8 +243,8 @@ for sitename in names_datasets:
         fp_tc_timeseries = os.path.join(fp_cassie,sitename,output_folder)
         if not os.path.exists(fp_tc_timeseries): os.makedirs(fp_tc_timeseries)
         for key in cross_distance.keys():
-            if os.path.exists(os.path.join(fp_tc_timeseries,'%s_timeseries_tidally_corrected.csv'%key)):
-                continue
+            # if os.path.exists(os.path.join(fp_tc_timeseries,'%s_timeseries_tidally_corrected.csv'%key)):
+            #     continue
             out_dict = dict([])
             out_dict['dates'] = cross_distance[key]['dates']
             out_dict[key] = cross_distance[key]['chainage_%s'%c]
