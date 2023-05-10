@@ -24,5 +24,4 @@ algorithms/COASTSAT/COASTSAT_shorelines_S2.ipynb
 assess_submissions.py
 generate_transects.py
 get_waves_ERA5.py
-\evaluation
-
+\evaluation_geo
