@@ -4,17 +4,25 @@
 
 This repository is a testbed for shoreline mapping algorithms using satellite imagery. It contains all benchmark datasets, input files, evaluation codes and output results (under /evaluation).
 
+**Current status**:
+
+![Alt text](.\evaluation\MSL\3_R2_selected.jpg)
+
+![Alt text](.\evaluation\MSL\0_allsites_ts.jpg)
+
+
 ## Background and Objectives
 
 Different algorithms can be used to map the position of the shoreline on satellite imagery like Landsat and Sentinel-2, and extract long-term time-series of coastal change. Satellite-derived shoreline workflows differ on many aspects including:
 1. the way images are  pre-processed (pan-sharpening, compositing, co-registration)
 2. the spectral indices used for detecting the water edge (NDWI, MNDWI, AWEI)
 3. the contouring method (at-pixel scale, sub-pixel, hard/soft classification)
-4.  the water level correction that is applied to the shorelines (tide, beach slope, wave setup)
+4. the water level correction that is applied to the shorelines (tide, beach slope, wave setup)
 
 With this project, we want to showcase the diversity of algorithms that can be applied to the satellite imagery and create a platform that can be used to:  
 - evaluate the accuracy of established satellite-derived shoreline (SDS) algorithms against benchmark datasets with a set methodology.
 - test new algorithms, future developments and enhancements of existing SDS workflows.
+
 
 ### Notebooks
 

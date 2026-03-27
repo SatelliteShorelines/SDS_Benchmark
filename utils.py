@@ -179,7 +179,7 @@ def compare_timeseries(ts,gt,key,settings):
     fig= plt.figure(figsize=[15,8], tight_layout=True)
     gs = gridspec.GridSpec(2,3)
     ax0 = fig.add_subplot(gs[0,:])
-    ax0.grid(b=True,which='major',linestyle=':',color='0.5')
+    ax0.grid(which='major',linestyle=':',color='0.5')
     ax0.plot(gt[key]['dates'], chain_sur_dm,'C1-',label='in situ')
     ax0.plot(dates_nonans, chain_sat_dm,'C0-',label='satellite')
     date_start = np.max([gt[key]['dates'][0],dates_nonans[0]])
@@ -320,7 +320,7 @@ def compare_timeseries2(ts,gt,key,settings):
     fig= plt.figure(figsize=[15,8], tight_layout=True)
     gs = gridspec.GridSpec(2,3)
     ax0 = fig.add_subplot(gs[0,:])
-    ax0.grid(b=True,which='major',linestyle=':',color='0.5')
+    ax0.grid(which='major',linestyle=':',color='0.5')
     ax0.plot(dates_sur, chain_sur_dm,'C1-',label='in situ')
     ax0.plot(dates_nonans, chain_sat_dm,'C0-',label='satellite')
     date_start = np.max([dates_sur[0],dates_nonans[0]])
@@ -360,10 +360,10 @@ def compare_timeseries2(ts,gt,key,settings):
                     continue
     ax0.plot(dates_sur, chain_sur_dm,'C1o',mfc='none',ms=4)
     ax0.plot(dates_nonans,chain_nonans,'C0o',mfc='none',ms=4)
-    ax0.plot(dates_int,chain_int,'ko',mfc='none',ms=4)
+    # ax0.plot(dates_int,chain_int,'ko',mfc='none',ms=4)
 
     
-    ax0.set_title('Transect %s - n_sur = %d - n_sat = %d - n_int = %d'%(key,
+    ax0.set_title('Transect %s - n_survey = %d - n_sat = %d - n_match (<10 days) = %d'%(key,
                                                                         len(dates_sur),
                                                                         len(dates_nonans),
                                                                         len(dates_int)))
