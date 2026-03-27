@@ -6,9 +6,9 @@ This repository is a testbed for shoreline mapping algorithms using satellite im
 
 **Current status**:
 
-![Alt text](.\evaluation\MSL\3_R2_selected.jpg)
+![Alt text](./evaluation/MSL/3_R2_selected.jpg)
 
-![Alt text](.\evaluation\MSL\0_allsites_ts.jpg)
+![Alt text](./evaluation/MSL/0_allsites_ts.jpg)
 
 
 ## Background and Objectives
