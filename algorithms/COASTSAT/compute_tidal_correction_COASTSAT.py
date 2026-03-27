@@ -153,8 +153,7 @@ for sitename in names_datasets:
             fn = os.path.join(fp_tc_timeseries,'%s_timeseries_tidally_corrected.csv'%key)
             df.to_csv(fn, sep=',')
 
-
-#%% rename satname column which was overwrite to 'Landsat'
+# rename satname column which was overwrite to 'Landsat'
 fp_coastsat = os.path.join(os.pardir,os.pardir,'submissions','team_COASTSAT')
 for sitename in names_datasets:
     if sitename in ['CALAMILLOR']: continue
@@ -182,3 +181,101 @@ for sitename in names_datasets:
                 if key in satname_dict:
                     df['satname'] = satname_dict[key]
                     df.to_csv(fp, sep=',')
+
+
+#%% For Sentinel-2
+fp_coastsat = os.path.join(os.pardir,os.pardir,'submissions','team_COASTSAT')
+for sitename in names_datasets:
+    if sitename in ['CALAMILLOR']: continue
+    if sitename not in ['TORREYPINES','TRUCVERT']: continue
+    print('\n%s'%sitename)
+    # locate submitted time-series
+    fp_timeseries = os.path.join(fp_coastsat,sitename,'raw_timeseries_S2')
+    date_str = 'dates'
+    # load dataset inputs
+    data_folder = os.path.join(fp_datasets,sitename)
+    # load time-series
+    fn_transects = os.listdir(fp_timeseries)
+    cross_distance = {}
+    for i,fn in enumerate(fn_transects):
+        fp = os.path.join(fp_timeseries,fn)
+        # get transect name from filename
+        key = fn.split('_')[0]
+        key = key.split('.csv')[0]
+        # if not key in selected_transects[sitename]: continue
+        # read csv file and extract dates and chainages
+        df = pd.read_csv(fp,sep=',',names=['dates',key,'satname'],
+                         skiprows=1)
+        chainage = np.array(df[key])
+        dates_sat = [pytz.utc.localize(datetime.strptime(_[:-6],'%Y-%m-%d %H:%M:%S')) for _ in df['dates']] 
+        if sitename in ['TORREYPINES','TRUCVERT']:
+            cross_distance[key] = {'chainage':chainage,
+                                   'dates': dates_sat}
+        else:
+            idx_nonan = np.where(~np.isnan(chainage))[0]
+            chainage1 = [chainage[k] for k in idx_nonan]
+            dates1 = [dates_sat[k] for k in idx_nonan]
+            chainage2, dates2 = SDS_transects.identify_outliers(list(chainage1), dates1, settings_transects['max_cross_change'])
+            cross_distance[key] = {'chainage':np.array(chainage2),
+                                    'dates': dates2}
+            # figure for QA
+            if settings_transects['plot_fig']:
+                fig,ax=plt.subplots(1,1,figsize=[12,6], sharex=True)
+                fig.set_tight_layout(True)
+                ax.grid(linestyle=':', color='0.5')
+                ax.set(ylabel='distance [m]',
+                          title= 'Transect %s original time-series - %d points' % (key, len(chainage)))
+                mean_cross_dist = np.nanmedian(chainage1)
+                # plot the data points
+                ax.plot(dates1, chainage1-mean_cross_dist, 'C0-')
+                ax.plot(dates1, chainage1-mean_cross_dist, 'C3o', ms=4, mec='k', mew=0.7,label='spike')
+                # plot the indices removed because of the threshold
+                ax.plot(dates2, chainage2-mean_cross_dist, 'C2o', ms=4, mec='k', mew=0.7,label='kept')
+                ax.legend(ncol=2,loc='upper right')
+                # plot the final time-series
+                print('%s  - outliers removed: %d'%(key, len(dates1) - len(dates2)))
+    #########################################################################################################
+    # Tidal correction
+    #########################################################################################################
+    ref_elev = {'MSL':0,'MHWS':sites_info[sitename]['contour_level']}
+    beach_slope = sites_info[sitename]['beach_slope']     # beach slope, uniform for all transects
+    # load tide time-series
+    fn_tides = os.path.join(data_folder,'%s_tides.csv'%sitename)
+    tide_data = pd.read_csv(fn_tides, parse_dates=['dates'])
+    dates_ts = [pytz.utc.localize(_.to_pydatetime()) for _ in tide_data['dates']]
+    tides_ts = np.array(tide_data['tides'])
+    tides_sat = SDS_tools.get_closest_datapoint(dates_sat, dates_ts, tides_ts)
+    # get tide levels corresponding to the time of image acquisition
+    for key in cross_distance.keys():
+        print(key)
+        # if os.path.exists(os.path.join(fp_cassie,sitename,
+        #                                'tidally_corrected_timeseries_MHWS',
+        #                                '%s_timeseries_tidally_corrected.csv'%key)):
+        #     continue
+        # repeat for MSL and MHWS
+        for c in ref_elev.keys():
+            reference_elevation = ref_elev[c] # elevation at which you would like the shoreline time-series to be
+            correction = (tides_sat-reference_elevation)/beach_slope
+            cross_distance[key]['chainage_%s'%c] = cross_distance[key]['chainage'] + correction
+            if sitename == 'TRUCVERT':     # remove low tide images for TRUCVERT only (based on Castelle et al. 2021)
+                for i in range(len(tides_sat)):
+                    if tides_sat[i] < 0.2: cross_distance[key]['chainage_%s'%c][i] = np.nan
+
+    # save in .csv files
+    for c in ref_elev.keys():
+        output_folder = 'tidally_corrected_timeseries_%s_S2'%c
+        fp_tc_timeseries = os.path.join(fp_coastsat,sitename,output_folder)
+        if not os.path.exists(fp_tc_timeseries): os.makedirs(fp_tc_timeseries)
+        for key in cross_distance.keys():
+            # if os.path.exists(os.path.join(fp_tc_timeseries,'%s_timeseries_tidally_corrected.csv'%key)):
+            #     continue
+            out_dict = dict([])
+            out_dict['dates'] = cross_distance[key]['dates']
+            out_dict[key] = cross_distance[key]['chainage_%s'%c]
+            out_dict['satname'] = ['S2' for _ in range(len(cross_distance[key]['dates']))]
+            df = pd.DataFrame(out_dict)
+            df.index=df['dates']
+            df.pop('dates')
+            # save tidally_corrected timeseries
+            fn = os.path.join(fp_tc_timeseries,'%s_timeseries_tidally_corrected.csv'%key)
+            df.to_csv(fn, sep=',')
