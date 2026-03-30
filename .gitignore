@@ -25,3 +25,4 @@ assess_submissions.py
 generate_transects.py
 get_waves_ERA5.py
 \evaluation_geo
+/.vscode
